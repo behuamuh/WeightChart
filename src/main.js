@@ -8,7 +8,7 @@ import drawChart from './drawChart';
 
 window.period = 36500;
 
-window.onload = function() {
+window.onload = function () {
   if (!localStorage['user']) {
     createUser();
   }
@@ -18,10 +18,11 @@ window.onload = function() {
   const hello = document.querySelector('h3#hello');
   hello.innerText = `Здравствуйте, ${userName}!`;
 
-  const giveWeight = document.querySelector('#weight-input');
-  giveWeight.innerText = !weigths.hasOwnProperty(new Date().toDateString())
-    ? 'Введите ваш текущий вес'
-    : 'Сегодня вы уже ввели свой вес';
+  const title = document.querySelector('#title');
+  title.innerText = ` Мы поможем Вам следить за изменениями веса
+    ${!weigths.hasOwnProperty(new Date().toDateString())
+      ? 'Введите ваш текущий вес'
+      : 'Сегодня вы уже ввели свой вес'}`;
 
   const input = document.querySelector('input#weight');
   input.addEventListener('keydown', event => {
@@ -44,7 +45,7 @@ window.onload = function() {
     if (!weigths.hasOwnProperty(now)) {
       alert('Вес добавлен');
       weigths[now] = input.value;
-      giveWeight.innerText = 'Сегодня вы уже ввели свой вес';
+      title.innerText = 'Сегодня вы уже ввели свой вес';
       saveUserChange(userName, weigths);
       drawChart(weigths);
     }
