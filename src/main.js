@@ -5,8 +5,11 @@ import {
   resetUserWeigths,
 } from './utils';
 import drawChart from './drawChart';
+import { LOCALE } from './const';
 
-window.period = 36500;
+window.lang = 'RU';
+const { HELLO, TITLE, CHANGE_NAME, RESET_WEIGHT, SEND_WEIGHT, WEIGHT_ADDED_ALERT, WEIGHT_IS_CHANGED, PROMPT_CREATE_USER
+  , PROMPT_CHANGE_NAME, RESET_CONFIRM } = LOCALE[lang];
 
 window.onload = function () {
   if (!localStorage['user']) {
@@ -16,13 +19,12 @@ window.onload = function () {
   const { userName, weigths } = JSON.parse(localStorage['user']);
 
   const hello = document.querySelector('h3#hello');
-  hello.innerText = `Здравствуйте, ${userName}!`;
+  hello.innerText = HELLO + userName + '!';
 
   const title = document.querySelector('#title');
-  title.innerText = ` Мы поможем Вам следить за изменениями веса
-    ${!weigths.hasOwnProperty(new Date().toDateString())
-      ? 'Введите ваш текущий вес'
-      : 'Сегодня вы уже ввели свой вес'}`;
+  title.innerText = weigths.hasOwnProperty(new Date().toDateString())
+    ? TITLE[1]
+    : TITLE[0];
 
   const input = document.querySelector('input#weight');
   input.addEventListener('keydown', event => {
@@ -30,24 +32,27 @@ window.onload = function () {
   });
 
   const sendBtn = document.querySelector('button#send');
+  sendBtn.innerText = SEND_WEIGHT;
   sendBtn.onclick = sendWeigth;
 
-  const changeName = document.querySelector('button#changeName');
-  changeName.onclick = changeUserName;
+  const changeNameBtn = document.querySelector('button#changeName');
+  changeNameBtn.innerText = CHANGE_NAME;
+  changeNameBtn.onclick = changeUserName;
 
-  const resetWeigths = document.querySelector('button#resetWeight');
-  resetWeigths.onclick = resetUserWeigths;
+  const resetWeigthsBtn = document.querySelector('button#resetWeight');
+  resetWeigthsBtn.innerText = RESET_WEIGHT;
+  resetWeigthsBtn.onclick = resetUserWeigths;
 
-  drawChart(weigths);
+  drawChart(weigths, window.lang);
 
   function sendWeigth() {
     const now = new Date().toDateString();
     if (!weigths.hasOwnProperty(now)) {
-      alert('Вес добавлен');
+      alert(WEIGHT_ADDED_ALERT);
       weigths[now] = input.value;
-      title.innerText = 'Сегодня вы уже ввели свой вес';
+      title.innerText = WEIGHT_IS_CHANGED;
       saveUserChange(userName, weigths);
-      drawChart(weigths);
+      drawChart(weigths, window.lang);
     }
     input.value = '';
   }
