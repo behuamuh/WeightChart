@@ -50,7 +50,7 @@ export default function(w, lang) {
     ctx.fillText(new Date(drawKeys[0]).toLocaleDateString(), 60, 20);
     ctx.fillText(
       new Date(drawKeys[drawKeys.length - 1]).toLocaleDateString(),
-      250,
+      286,
       20
     );
     ctx.closePath();
