@@ -7,14 +7,43 @@ import {
 import drawChart from './drawChart';
 import { LOCALE } from './const';
 
-window.lang = 'RU';
-const { HELLO, TITLE, CHANGE_NAME, RESET_WEIGHT, SEND_WEIGHT, WEIGHT_ADDED_ALERT, WEIGHT_IS_CHANGED, PROMPT_CREATE_USER
-  , PROMPT_CHANGE_NAME, RESET_CONFIRM } = LOCALE[lang];
+let lang = 'RU';
 
-window.onload = function () {
+window.onload = function work() {
+  const {
+    HELLO,
+    TITLE,
+    CHANGE_NAME,
+    RESET_WEIGHT,
+    SEND_WEIGHT,
+    WEIGHT_ADDED_ALERT,
+    WEIGHT_IS_CHANGED,
+    PROMPT_CREATE_USER,
+    PROMPT_CHANGE_NAME,
+    RESET_CONFIRM,
+  } = LOCALE[lang];
+
   if (!localStorage['user']) {
-    createUser();
+    createUser(...PROMPT_CREATE_USER);
   }
+
+  const changeLangField = document.querySelector('#language');
+  changeLangField.innerHTML = '';
+  Object.keys(LOCALE).forEach(item => {
+    const btn = document.createElement('button');
+    btn.classList.add(
+      'btn',
+      'btn-sm',
+      item === lang ? 'btn-success' : 'btn-outline-success'
+    );
+    btn.innerText = item;
+    btn.style.cursor = 'pointer';
+    btn.onclick = event => {
+      lang = event.target.innerText;
+      work();
+    };
+    changeLangField.appendChild(btn);
+  });
 
   const { userName, weigths } = JSON.parse(localStorage['user']);
 
@@ -37,13 +66,13 @@ window.onload = function () {
 
   const changeNameBtn = document.querySelector('button#changeName');
   changeNameBtn.innerText = CHANGE_NAME;
-  changeNameBtn.onclick = changeUserName;
+  changeNameBtn.onclick = () => changeUserName(PROMPT_CHANGE_NAME);
 
   const resetWeigthsBtn = document.querySelector('button#resetWeight');
   resetWeigthsBtn.innerText = RESET_WEIGHT;
-  resetWeigthsBtn.onclick = resetUserWeigths;
+  resetWeigthsBtn.onclick = () => resetUserWeigths(RESET_CONFIRM);
 
-  drawChart(weigths, window.lang);
+  drawChart(weigths, lang);
 
   function sendWeigth() {
     const now = new Date().toDateString();
@@ -52,7 +81,7 @@ window.onload = function () {
       weigths[now] = input.value;
       title.innerText = WEIGHT_IS_CHANGED;
       saveUserChange(userName, weigths);
-      drawChart(weigths, window.lang);
+      drawChart(weigths, lang);
     }
     input.value = '';
   }

@@ -1,19 +1,54 @@
 export const LOCALE = {
   RU: {
     HELLO: 'Здравствуйте, ',
-    TITLE: ['Мы поможем Вам следить за изменениями веса. \nВведите ваш текущий вес',
-      'Мы поможем Вам следить за изменениями веса. \nСегодня вы уже ввели свой вес'],
+    TITLE: [
+      'Мы поможем Вам следить за изменениями веса. \nВведите ваш текущий вес',
+      'Мы поможем Вам следить за изменениями веса. \nСегодня вы уже ввели свой вес',
+    ],
     CHANGE_NAME: 'Сменить имя',
     RESET_WEIGHT: 'Сбросить данные',
     SEND_WEIGHT: 'Записать',
-    PERIODS: ['За неделю', 'За месяц','За год','За все время'],
+    PERIODS: ['За неделю', 'За месяц', 'За год', 'За все время'],
     WEIGHT_ADDED_ALERT: 'Вес добавлен',
-    WEIGHT_IS_CHANGED:'Сегодня вы уже ввели свой вес',
-    TITLE_CHART: ['Здесь будет Ваша динамика' , 'Ваша динамика'],
-    RESULT_CHART: ['За период с ', 'Вы ', 'сбросили', 'набрали', 'кг', 'Отлично, так держать!'
-          , 'Не расстраивайтесь, у Вас все получится!'],
+    WEIGHT_IS_CHANGED: 'Сегодня вы уже ввели свой вес',
+    TITLE_CHART: ['Здесь будет Ваша динамика', 'Ваша динамика'],
+    RESULT_CHART: [
+      'За период с ',
+      'Вы ',
+      'сбросили',
+      'набрали',
+      'кг',
+      'Отлично, так держать!',
+      'Не расстраивайтесь, у Вас все получится!',
+    ],
     PROMPT_CREATE_USER: ['Здравствуйте, представтесь пожалуйста.', 'Гость'],
     PROMPT_CHANGE_NAME: 'Введите новое имя',
     RESET_CONFIRM: 'Вы уверены?',
-  }
-}
+  },
+  EN: {
+    HELLO: 'Welcome, ',
+    TITLE: [
+      'We will help you keep track of weight changes. \nEnter your current weight ',
+      'We will help you keep track of weight changes. \nToday you have already entered your weight',
+    ],
+    CHANGE_NAME: 'Change name',
+    RESET_WEIGHT: 'Reset all weights',
+    SEND_WEIGHT: 'Write',
+    PERIODS: ['For a week', 'For a month', 'For a year', 'For all time'],
+    WEIGHT_ADDED_ALERT: 'Weight added',
+    WEIGHT_IS_CHANGED: 'Today you have already entered your weight',
+    TITLE_CHART: ['Your dynamics will be here', 'Your dynamics'],
+    RESULT_CHART: [
+      'For the period from ',
+      'You ',
+      'dropped',
+      'scored',
+      'kg',
+      'Great, keep it up!',
+      'Do not worry, you will succeed!',
+    ],
+    PROMPT_CREATE_USER: ['Hello, please introduce yourself.', 'Guest'],
+    PROMPT_CHANGE_NAME: 'Enter new name',
+    RESET_CONFIRM: 'Are you sure?',
+  },
+};
